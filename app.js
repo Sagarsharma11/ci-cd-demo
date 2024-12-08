@@ -7,6 +7,12 @@ app.get("/",(req, res)=>{
     })
 })
 
+app.get("/check",(req, res)=>{
+    return res.status(200).json({
+        message:"Check"
+    })
+})
+
 app.listen(8000, ()=>{
  console.log(`App is running on port 8000`)
 })
