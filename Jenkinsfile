@@ -41,8 +41,8 @@ pipeline {
                 """,
                 recipientProviders: [[$class: 'CulpritsRecipientProvider']], // Use this for SCM committers
                 to: 'sagarsharmatech00@gmail.com',
-                from: 'your_email@example.com', // Ensure this matches your SMTP sender
-                replyTo: 'your_email@example.com'
+                from: 'sagarsharmatech00@gmail.com', // Ensure this matches your SMTP sender
+                replyTo: 'sagarsharmatech00@gmail.com'
             )
         }
     }
