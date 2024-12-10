@@ -29,4 +29,19 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            emailext(
+                subject: "Build Notification: ${currentBuild.fullDisplayName}",
+                body: """Build Details:
+                - Job Name: ${env.JOB_NAME}
+                - Build Number: ${env.BUILD_NUMBER}
+                - Status: ${currentBuild.currentResult}
+                - URL: ${env.BUILD_URL}
+                """,
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                to: 'sagarsharmatech00@gmail.com' // Replace with your email
+            )
+        }
+    }
 }
