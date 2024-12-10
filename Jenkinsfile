@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') // Ensure this matches the actual Jenkins credentials ID
-        DOCKER_IMAGE = 'sagar01dev/ci-cd-demo' // Your Docker Hub repository
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') // Jenkins credential ID
+        DOCKER_IMAGE = 'sagar01dev/ci-cd-demo' // Docker Hub repository
     }
     stages {
         stage('Checkout Code') {
@@ -39,8 +39,10 @@ pipeline {
                 - Status: ${currentBuild.currentResult}
                 - URL: ${env.BUILD_URL}
                 """,
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                to: 'sagarsharmatech00@gmail.com' // Replace with your email
+                recipientProviders: [[$class: 'CulpritsRecipientProvider']], // Use this for SCM committers
+                to: 'sagarsharmatech00@gmail.com',
+                from: 'your_email@example.com', // Ensure this matches your SMTP sender
+                replyTo: 'your_email@example.com'
             )
         }
     }
